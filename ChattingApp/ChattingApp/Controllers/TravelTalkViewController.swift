@@ -64,6 +64,8 @@ extension TravelTalkViewController: UICollectionViewDelegate, UICollectionViewDa
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = self.storyboard?.instantiateViewController(identifier: "ChattingViewController") as! ChattingViewController
         
+        vc.chatList = chatRoomList[indexPath.item].chatList
+        
         navigationController?.pushViewController(vc, animated: true)
     }
     

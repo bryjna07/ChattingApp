@@ -104,6 +104,10 @@
                             <constraint firstItem="m7u-c9-zBm" firstAttribute="leading" secondItem="DSi-0f-Z0j" secondAttribute="leading" id="oyO-OY-dgI"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="m7u-c9-zBm" id="uZk-kX-emZ"/>
+                        <outlet property="textView" destination="Vqz-YW-4uk" id="jwM-8s-wZw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s4V-mY-KnP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

@@ -32,11 +32,10 @@ final class TravelTalkCell: UICollectionViewCell {
         super.layoutSubviews()
         profileImageView.layer.cornerRadius = profileImageView.bounds.width / 2
         profileImageView.clipsToBounds = true
-        profileImageView.contentMode = .scaleAspectFill
     }
 
     private func configureUI() {
-        profileImageView.backgroundColor = .lightGray
+        profileImageView.contentMode = .scaleAspectFill
         
         nameLabel.font = .systemFont(ofSize: 18, weight: .medium)
         chatLabel.textColor = .gray
@@ -51,6 +50,6 @@ final class TravelTalkCell: UICollectionViewCell {
         nameLabel.text = chatRoom.chatroomName
         profileImageView.image = UIImage(named: chatRoom.chatroomImage)
         chatLabel.text = chatRoom.chatList.last?.message
-        dateLabel.text = chatRoom.chatList.last?.date.formatDate()
+        dateLabel.text = chatRoom.chatList.last?.date.formatListDate()
     }
 }
