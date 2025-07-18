@@ -17,9 +17,14 @@ final class TravelTalkViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "TRAVEL TALK"
+        configureUI()
         setUpData()
         setUpCollectionView()
+    }
+    
+    private func configureUI() {
+        title = "TRAVEL TALK"
+        navigationController?.navigationBar.tintColor = .black
     }
     
     private func setUpCollectionView() {
@@ -44,8 +49,6 @@ final class TravelTalkViewController: UIViewController {
     private func setUpData() {
         chatRoomList = ChatList.list
     }
-
-
 }
 
 extension TravelTalkViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -65,7 +68,7 @@ extension TravelTalkViewController: UICollectionViewDelegate, UICollectionViewDa
         let vc = self.storyboard?.instantiateViewController(identifier: "ChattingViewController") as! ChattingViewController
         
         vc.chatList = chatRoomList[indexPath.item].chatList
-        
+        vc.title = chatRoomList[indexPath.item].chatroomName
         navigationController?.pushViewController(vc, animated: true)
     }
     

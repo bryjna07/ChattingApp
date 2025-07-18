@@ -36,8 +36,8 @@ final class ChattingCell: UITableViewCell {
         selectionStyle = .none
         profileImageView.contentMode = .scaleAspectFill
         
-        nameLabel.font = .systemFont(ofSize: 18, weight: .medium)
-        chatLabel.font = .systemFont(ofSize: 18)
+        nameLabel.font = .systemFont(ofSize: 16, weight: .medium)
+        chatLabel.font = .systemFont(ofSize: 16)
         containerView.layer.borderWidth = 1
         containerView.layer.borderColor = UIColor.gray.cgColor
         containerView.layer.cornerRadius = 10

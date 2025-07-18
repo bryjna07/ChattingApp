@@ -35,7 +35,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bsO-aB-cjs">
-                        <rect key="frame" x="125.33333333333331" y="60" width="60" height="21"/>
+                        <rect key="frame" x="129.33333333333334" y="68" width="60" height="21"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="60" id="XrK-Z6-WYZ"/>
                         </constraints>
@@ -44,10 +44,10 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XWK-9w-u4f">
-                        <rect key="frame" x="64" y="46" width="57.333333333333343" height="37"/>
+                        <rect key="frame" x="64" y="46" width="61.333333333333343" height="45"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pXa-H6-GSL">
-                                <rect key="frame" x="8" y="8" width="41.333333333333336" height="21"/>
+                                <rect key="frame" x="10" y="10" width="41.333333333333336" height="25"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -55,10 +55,10 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="pXa-H6-GSL" firstAttribute="top" secondItem="XWK-9w-u4f" secondAttribute="top" constant="8" id="3iT-Fh-Hn2"/>
-                            <constraint firstAttribute="trailing" secondItem="pXa-H6-GSL" secondAttribute="trailing" constant="8" id="YBQ-Pm-gsX"/>
-                            <constraint firstAttribute="bottom" secondItem="pXa-H6-GSL" secondAttribute="bottom" constant="8" id="qGQ-DM-5Kg"/>
-                            <constraint firstItem="pXa-H6-GSL" firstAttribute="leading" secondItem="XWK-9w-u4f" secondAttribute="leading" constant="8" id="vta-Vo-aC9"/>
+                            <constraint firstItem="pXa-H6-GSL" firstAttribute="top" secondItem="XWK-9w-u4f" secondAttribute="top" constant="10" id="3iT-Fh-Hn2"/>
+                            <constraint firstAttribute="trailing" secondItem="pXa-H6-GSL" secondAttribute="trailing" constant="10" id="YBQ-Pm-gsX"/>
+                            <constraint firstAttribute="bottom" secondItem="pXa-H6-GSL" secondAttribute="bottom" constant="10" id="qGQ-DM-5Kg"/>
+                            <constraint firstItem="pXa-H6-GSL" firstAttribute="leading" secondItem="XWK-9w-u4f" secondAttribute="leading" constant="10" id="vta-Vo-aC9"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -70,7 +70,7 @@
                     <constraint firstItem="sTk-wR-0fR" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="SnP-94-uai"/>
                     <constraint firstItem="XWK-9w-u4f" firstAttribute="leading" secondItem="sTk-wR-0fR" secondAttribute="trailing" constant="8" id="Y6o-BN-Wfg"/>
                     <constraint firstItem="XWK-9w-u4f" firstAttribute="trailing" secondItem="bsO-aB-cjs" secondAttribute="leading" constant="-4" id="eK8-Wz-tXP"/>
-                    <constraint firstAttribute="bottom" secondItem="XWK-9w-u4f" secondAttribute="bottom" constant="16" id="lIU-uK-sMB"/>
+                    <constraint firstAttribute="bottom" secondItem="XWK-9w-u4f" secondAttribute="bottom" constant="8" id="lIU-uK-sMB"/>
                     <constraint firstItem="aBK-j0-NxK" firstAttribute="leading" secondItem="sTk-wR-0fR" secondAttribute="trailing" constant="8" id="mqa-qt-h1A"/>
                     <constraint firstItem="XWK-9w-u4f" firstAttribute="bottom" secondItem="bsO-aB-cjs" secondAttribute="bottom" constant="2" id="qFw-Hf-kTV"/>
                 </constraints>
