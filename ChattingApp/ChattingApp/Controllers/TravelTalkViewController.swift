@@ -23,12 +23,12 @@ final class TravelTalkViewController: UIViewController {
     }
     
     private func configureUI() {
-        title = "TRAVEL TALK"
+        title = Text.travelTalkTitle
         navigationController?.navigationBar.tintColor = .black
     }
     
     private func setUpCollectionView() {
-        collectionView.register(UINib(nibName: "TravelTalkCell", bundle: nil), forCellWithReuseIdentifier: "TravelTalkCell")
+        collectionView.register(CellType.travelTalk.nib, forCellWithReuseIdentifier: CellType.travelTalk.id)
         
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -57,7 +57,7 @@ extension TravelTalkViewController: UICollectionViewDelegate, UICollectionViewDa
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TravelTalkCell", for: indexPath) as! TravelTalkCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellType.travelTalk.id, for: indexPath) as! TravelTalkCell
         
         cell.chatRoom = chatRoomList[indexPath.item]
         
@@ -65,7 +65,7 @@ extension TravelTalkViewController: UICollectionViewDelegate, UICollectionViewDa
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let vc = self.storyboard?.instantiateViewController(identifier: "ChattingViewController") as! ChattingViewController
+        let vc = self.storyboard?.instantiateViewController(identifier: Storyboard.chattingVC) as! ChattingViewController
         
         vc.chatList = chatRoomList[indexPath.item].chatList
         vc.title = chatRoomList[indexPath.item].chatroomName

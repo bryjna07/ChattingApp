@@ -10,11 +10,8 @@ import UIKit
 final class TravelTalkCell: UICollectionViewCell {
     
     @IBOutlet var profileImageView: UIImageView!
-    
     @IBOutlet var nameLabel: UILabel!
-    
     @IBOutlet var chatLabel: UILabel!
-    
     @IBOutlet var dateLabel: UILabel!
     
     var chatRoom: ChatRoom? {
@@ -38,8 +35,10 @@ final class TravelTalkCell: UICollectionViewCell {
         profileImageView.contentMode = .scaleAspectFill
         
         nameLabel.font = .systemFont(ofSize: 18, weight: .medium)
+        
         chatLabel.textColor = .gray
         chatLabel.font = .systemFont(ofSize: 16)
+        
         dateLabel.font = .systemFont(ofSize: 12)
         dateLabel.textColor = .gray
         dateLabel.textAlignment = .right

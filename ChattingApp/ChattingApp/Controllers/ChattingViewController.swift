@@ -20,10 +20,8 @@ final class ChattingViewController: UIViewController {
     }
     
     private func setUpTableView() {
-        let nib = UINib(nibName: "ChattingCell", bundle: nil)
-        tableView.register(nib, forCellReuseIdentifier: "ChattingCell")
-        let nib2 = UINib(nibName: "UserChattingCell", bundle: nil)
-        tableView.register(nib2, forCellReuseIdentifier: "UserChattingCell")
+        tableView.register(CellType.chatting.nib, forCellReuseIdentifier: CellType.chatting.id)
+        tableView.register(CellType.userChatting.nib, forCellReuseIdentifier: CellType.userChatting.id)
         tableView.dataSource = self
         tableView.delegate = self
         tableView.rowHeight = UITableView.automaticDimension
@@ -43,7 +41,7 @@ extension ChattingViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if chatList[indexPath.row].user.name == ChatList.me.name {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "UserChattingCell") as! UserChattingCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: CellType.userChatting.id) as! UserChattingCell
             
             cell.chat = chatList[indexPath.row]
             
@@ -51,7 +49,7 @@ extension ChattingViewController: UITableViewDataSource, UITableViewDelegate {
             
         } else {
             
-            let cell = tableView.dequeueReusableCell(withIdentifier: "ChattingCell") as! ChattingCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: CellType.chatting.id) as! ChattingCell
             
             cell.chat = chatList[indexPath.row]
             
