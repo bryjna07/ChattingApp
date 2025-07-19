@@ -6,7 +6,8 @@
 //
 
 import UIKit
-
+//업다운게임.
+//채팅주말과제 + 옵션
 final class ChattingViewController: UIViewController {
     
     @IBOutlet var tableView: UITableView!
@@ -19,6 +20,30 @@ final class ChattingViewController: UIViewController {
         setUpTableView()
     }
     
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        print(#function)
+        let lastIndex = IndexPath(row: chatList.count - 1, section: 0)
+        print(lastIndex)
+//        tableView.scrollToRow(at: lastIndex, at: .bottom, animated: true)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        print(#function)
+        let lastIndex = IndexPath(row: chatList.count - 1, section: 0)
+        tableView.scrollToRow(at: lastIndex, at: .bottom, animated: true)
+        print(lastIndex)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print(#function)
+        let lastIndex = IndexPath(row: chatList.count - 1, section: 0)
+        print(lastIndex)
+//        tableView.scrollToRow(at: lastIndex, at: .bottom, animated: true)
+    }
+    
     private func setUpTableView() {
         tableView.register(CellType.chatting.nib, forCellReuseIdentifier: CellType.chatting.id)
         tableView.register(CellType.userChatting.nib, forCellReuseIdentifier: CellType.userChatting.id)
@@ -27,8 +52,16 @@ final class ChattingViewController: UIViewController {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
-        let lastIndex = IndexPath(row: chatList.count - 1, section: 0)
-        tableView.scrollToRow(at: lastIndex, at: .bottom, animated: true) // 위치 고민
+        //viewDidAppear 보다 더 적절한 위치는 어딜지 고민, reload 시에는 어떻게 될까
+        // Pagination
+//        DispatchQueue.main.async { [weak self] in
+//            guad let self else { return }
+//            let lastIndex = IndexPath(row: self.chatList.count - 1, section: 0)
+//            self.tableView.scrollToRow(at: lastIndex, at: .bottom, animated: true)
+//        }
+        //viewDidLoad 에서 dispatchqu.main.async { }
+//        let lastIndex = IndexPath(row: chatList.count - 1, section: 0)
+//        tableView.scrollToRow(at: lastIndex, at: .bottom, animated: true) // 위치 고민
     }
 }
 
