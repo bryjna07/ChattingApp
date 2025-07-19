@@ -8,7 +8,7 @@
 import UIKit
 
 final class TravelTalkCell: UICollectionViewCell {
-
+    
     @IBOutlet var profileImageView: UIImageView!
     
     @IBOutlet var nameLabel: UILabel!
@@ -33,7 +33,7 @@ final class TravelTalkCell: UICollectionViewCell {
         profileImageView.layer.cornerRadius = profileImageView.bounds.width / 2
         profileImageView.clipsToBounds = true
     }
-
+    
     private func configureUI() {
         profileImageView.contentMode = .scaleAspectFill
         
