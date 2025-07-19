@@ -12,12 +12,15 @@ final class ChattingViewController: UIViewController {
     
     @IBOutlet var tableView: UITableView!
     @IBOutlet var textView: UITextView!
+    @IBOutlet var sendButton: UIButton!
     
     var chatList: [Chat] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpTableView()
+        setUpTextView()
+        setUpButton()
     }
     
     override func viewWillLayoutSubviews() {
@@ -51,7 +54,6 @@ final class ChattingViewController: UIViewController {
         tableView.delegate = self
         tableView.rowHeight = UITableView.automaticDimension
         tableView.separatorStyle = .none
-        tableView.showsVerticalScrollIndicator = false
         //viewDidAppear 보다 더 적절한 위치는 어딜지 고민, reload 시에는 어떻게 될까
         // Pagination
 //        DispatchQueue.main.async { [weak self] in
@@ -62,6 +64,31 @@ final class ChattingViewController: UIViewController {
         //viewDidLoad 에서 dispatchqu.main.async { }
 //        let lastIndex = IndexPath(row: chatList.count - 1, section: 0)
 //        tableView.scrollToRow(at: lastIndex, at: .bottom, animated: true) // 위치 고민
+    }
+    
+    private func setUpTextView() {
+        textView.text = ""
+        textView.backgroundColor = .systemGray6
+        textView.font = .systemFont(ofSize: 16)
+        textView.layer.cornerRadius = 10
+        textView.clipsToBounds = true
+    }
+    
+    private func setUpButton() {
+        sendButton.setTitle("", for: .normal)
+        sendButton.setImage(UIImage(systemName: "chevron.right.square"), for: .normal)
+        sendButton.tintColor = .systemGray2
+ 
+    }
+    
+    @IBAction func sendButtonTapped(_ sender: UIButton) {
+        guard let text = textView.text, !text.isEmpty else { return }
+        let date = Date()
+        let dateString = date.makeChatDateString()
+        let chat = Chat(user: ChatList.me, date: dateString, message: text)
+        chatList.append(chat)
+        tableView.reloadData()
+        textView.text = ""
     }
 }
 

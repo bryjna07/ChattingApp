@@ -11,7 +11,7 @@ extension String {
     func formatListDate() -> String {
         let forMattter = DateFormatter()
         forMattter.dateFormat = "yyyy-MM-dd HH:mm"
-
+        
         if let date = forMattter.date(from: self
         ) {
             forMattter.dateFormat = "yy.MM.dd"
@@ -22,12 +22,20 @@ extension String {
     func formatChatDate() -> String {
         let forMattter = DateFormatter()
         forMattter.dateFormat = "yyyy-MM-dd HH:mm"
-
+        
         if let date = forMattter.date(from: self
         ) {
-            forMattter.dateFormat = "hh:mm a"
+            forMattter.dateFormat = "h:mm a"
             forMattter.locale = Locale(identifier: "ko_KR")
             return forMattter.string(from: date)
         } else { return "알 수 없음" }
     }
+}
+
+extension Date {
+    func makeChatDateString() -> String {
+          let formatter = DateFormatter()
+          formatter.dateFormat = "yyyy-MM-dd HH:mm"
+          return formatter.string(from: self)
+      }
 }

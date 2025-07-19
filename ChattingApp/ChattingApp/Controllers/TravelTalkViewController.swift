@@ -10,7 +10,6 @@ import UIKit
 final class TravelTalkViewController: UIViewController {
 
     @IBOutlet var searchBar: UISearchBar!
-    
     @IBOutlet var collectionView: UICollectionView!
     
     private var chatRoomList: [ChatRoom] = []
@@ -18,13 +17,23 @@ final class TravelTalkViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+    }
+    
+    private func configureUI() {
+        setUpNaviBar()
         setUpData()
         setUpCollectionView()
     }
     
-    private func configureUI() {
+    private func setUpNaviBar() {
         title = Text.travelTalkTitle
+        let appearance = UINavigationBarAppearance()
+        appearance.backgroundColor = .white
+        appearance.configureWithOpaqueBackground() // 불투명
         navigationController?.navigationBar.tintColor = .black
+        navigationController?.navigationBar.standardAppearance = appearance // 기본설정
+        navigationController?.navigationBar.compactAppearance = appearance // 컴팩트바 ?
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance // 스크롤 시
     }
     
     private func setUpCollectionView() {
@@ -34,7 +43,7 @@ final class TravelTalkViewController: UIViewController {
         collectionView.dataSource = self
         
         let layout = UICollectionViewFlowLayout()
-        layout.sectionInset = .init(top: 0, left: 16, bottom: 0, right: 16)
+        layout.sectionInset = .init(top: 0, left: 16, bottom: 16, right: 16)
         layout.minimumInteritemSpacing = 0 // 셀과 셀 사이
         layout.minimumLineSpacing = 0 // 위 아래 간격
         
