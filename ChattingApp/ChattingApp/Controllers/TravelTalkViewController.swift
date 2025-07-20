@@ -39,7 +39,7 @@ final class TravelTalkViewController: UIViewController {
     
     private func setUpSearchBar() {
         searchBar.delegate = self
-        searchBar.placeholder = Text.searchPlace
+        searchBar.placeholder = Text.searchPlaceholder
     }
     
     private func setUpCollectionView() {

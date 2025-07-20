@@ -11,8 +11,13 @@ import UIKit
 final class ChattingViewController: UIViewController {
     
     @IBOutlet var tableView: UITableView!
+    @IBOutlet var containerView: UIView!
     @IBOutlet var textView: UITextView!
     @IBOutlet var sendButton: UIButton!
+    
+    @IBOutlet var textViewHeight: NSLayoutConstraint!
+    @IBOutlet var containerViewHeight: NSLayoutConstraint!
+    @IBOutlet var placeholderLabel: UILabel!
     
     var chatList: [Chat] = []
     
@@ -68,21 +73,29 @@ final class ChattingViewController: UIViewController {
     
     private func setUpTextView() {
         textView.text = ""
+        textView.font = .systemFont(ofSize: 18)
         textView.backgroundColor = .systemGray6
-        textView.font = .systemFont(ofSize: 16)
-        textView.layer.cornerRadius = 10
-        textView.clipsToBounds = true
+        textView.delegate = self
+        
+        containerView.backgroundColor = .systemGray6
+        containerView.layer.cornerRadius = 10
+        containerView.clipsToBounds = true
+        
+        placeholderLabel.text = Text.chatPlaceholder
+        placeholderLabel.textColor = .gray
+        placeholderLabel.font = .systemFont(ofSize: 18)
     }
     
     private func setUpButton() {
         sendButton.setTitle("", for: .normal)
-        sendButton.setImage(UIImage(systemName: "chevron.right.square"), for: .normal)
+        sendButton.setImage(UIImage(systemName: Text.sendImageName), for: .normal)
         sendButton.tintColor = .systemGray2
  
     }
     
     @IBAction func sendButtonTapped(_ sender: UIButton) {
-        guard let text = textView.text, !text.isEmpty else { return }
+        guard let text = textView.text?.trimmingCharacters(in: .whitespaces), !text.isEmpty else { return }
+        
         let date = Date()
         let dateString = date.makeChatDateString()
         let chat = Chat(user: ChatList.me, date: dateString, message: text)
@@ -117,4 +130,24 @@ extension ChattingViewController: UITableViewDataSource, UITableViewDelegate {
         }
     }
     
+}
+
+extension ChattingViewController: UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        placeholderLabel.isHidden = !textView.text.isEmpty
+        
+        let size = CGSize(width: textView.frame.width, height: .infinity)
+        let estimatedSize = textView.sizeThatFits(size)
+        
+        // 최소 / 최대 높이 지정 가능
+        let maxHeight: CGFloat = 72
+        let minHeight: CGFloat = 40
+        
+        let newHeight = min(max(estimatedSize.height, minHeight), maxHeight)
+
+        textViewHeight.constant = newHeight
+        containerViewHeight.constant = newHeight
+
+        view.layoutIfNeeded()
+    }
 }

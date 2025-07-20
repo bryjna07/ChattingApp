@@ -77,48 +77,76 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="m7u-c9-zBm">
-                                <rect key="frame" x="0.0" y="118" width="393" height="584"/>
+                                <rect key="frame" x="0.0" y="118" width="393" height="590"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Pri-QE-9fi">
-                                <rect key="frame" x="16" y="718" width="361" height="50"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a2h-PK-xLm">
+                                <rect key="frame" x="16" y="724" width="361" height="44"/>
+                                <subviews>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Pri-QE-9fi">
+                                        <rect key="frame" x="0.0" y="4" width="317" height="40"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="OHw-IU-zhO"/>
+                                        </constraints>
+                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                        <color key="textColor" systemColor="labelColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L0T-ct-Tmu">
+                                        <rect key="frame" x="317" y="0.0" width="44" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="Kmr-pr-IqK"/>
+                                            <constraint firstAttribute="width" constant="44" id="idf-b0-5zg"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                        <connections>
+                                            <action selector="sendButtonTapped:" destination="6uc-aY-LnD" eventType="touchUpInside" id="UJD-T1-sB1"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9aR-tb-TRF">
+                                        <rect key="frame" x="4" y="12" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="mrA-jw-T1o"/>
+                                    <constraint firstAttribute="height" constant="44" id="0iI-TT-Hss"/>
+                                    <constraint firstItem="Pri-QE-9fi" firstAttribute="leading" secondItem="a2h-PK-xLm" secondAttribute="leading" id="5Tb-6Z-EY6"/>
+                                    <constraint firstAttribute="trailing" secondItem="L0T-ct-Tmu" secondAttribute="trailing" id="Bd3-Bh-Cjp"/>
+                                    <constraint firstAttribute="bottom" secondItem="Pri-QE-9fi" secondAttribute="bottom" id="GVK-dv-TmW"/>
+                                    <constraint firstItem="L0T-ct-Tmu" firstAttribute="leading" secondItem="Pri-QE-9fi" secondAttribute="trailing" id="Maa-0G-1dX"/>
+                                    <constraint firstItem="9aR-tb-TRF" firstAttribute="leading" secondItem="Pri-QE-9fi" secondAttribute="leading" constant="4" id="ZQ4-jq-QoR"/>
+                                    <constraint firstItem="Pri-QE-9fi" firstAttribute="top" secondItem="a2h-PK-xLm" secondAttribute="top" constant="4" id="eVp-ob-Rht"/>
+                                    <constraint firstItem="9aR-tb-TRF" firstAttribute="top" secondItem="Pri-QE-9fi" secondAttribute="top" constant="8" id="lsM-Ez-pPB"/>
+                                    <constraint firstItem="L0T-ct-Tmu" firstAttribute="top" secondItem="a2h-PK-xLm" secondAttribute="top" id="mA5-Aq-zmD"/>
                                 </constraints>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <color key="textColor" systemColor="labelColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L0T-ct-Tmu">
-                                <rect key="frame" x="302" y="718" width="75" height="50"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
-                                <connections>
-                                    <action selector="sendButtonTapped:" destination="6uc-aY-LnD" eventType="touchUpInside" id="UJD-T1-sB1"/>
-                                </connections>
-                            </button>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="DSi-0f-Z0j"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Pri-QE-9fi" firstAttribute="bottom" secondItem="L0T-ct-Tmu" secondAttribute="bottom" id="441-UX-nhi"/>
                             <constraint firstItem="DSi-0f-Z0j" firstAttribute="trailing" secondItem="m7u-c9-zBm" secondAttribute="trailing" id="4lS-PJ-YnH"/>
-                            <constraint firstItem="DSi-0f-Z0j" firstAttribute="bottom" secondItem="Pri-QE-9fi" secondAttribute="bottom" constant="16" id="9OG-aD-WgT"/>
-                            <constraint firstItem="DSi-0f-Z0j" firstAttribute="trailing" secondItem="Pri-QE-9fi" secondAttribute="trailing" constant="16" id="B1A-EB-txx"/>
-                            <constraint firstItem="Pri-QE-9fi" firstAttribute="leading" secondItem="DSi-0f-Z0j" secondAttribute="leading" constant="16" id="BKm-Sm-IAX"/>
-                            <constraint firstItem="Pri-QE-9fi" firstAttribute="trailing" secondItem="L0T-ct-Tmu" secondAttribute="trailing" id="CBM-Gc-IkB"/>
-                            <constraint firstItem="L0T-ct-Tmu" firstAttribute="top" secondItem="Pri-QE-9fi" secondAttribute="top" id="G3e-cA-jfn"/>
-                            <constraint firstItem="Pri-QE-9fi" firstAttribute="top" secondItem="m7u-c9-zBm" secondAttribute="bottom" constant="16" id="Kx0-r5-7ut"/>
+                            <constraint firstItem="DSi-0f-Z0j" firstAttribute="trailing" secondItem="a2h-PK-xLm" secondAttribute="trailing" constant="16" id="F5s-Ya-rTf"/>
+                            <constraint firstItem="a2h-PK-xLm" firstAttribute="leading" secondItem="DSi-0f-Z0j" secondAttribute="leading" constant="16" id="POG-DA-Ekk"/>
                             <constraint firstItem="m7u-c9-zBm" firstAttribute="top" secondItem="DSi-0f-Z0j" secondAttribute="top" id="mK0-UG-MEt"/>
+                            <constraint firstItem="a2h-PK-xLm" firstAttribute="top" secondItem="m7u-c9-zBm" secondAttribute="bottom" constant="16" id="ohe-Pj-vjp"/>
                             <constraint firstItem="m7u-c9-zBm" firstAttribute="leading" secondItem="DSi-0f-Z0j" secondAttribute="leading" id="oyO-OY-dgI"/>
+                            <constraint firstItem="DSi-0f-Z0j" firstAttribute="bottom" secondItem="a2h-PK-xLm" secondAttribute="bottom" constant="16" id="wL9-DH-4pP"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="containerView" destination="a2h-PK-xLm" id="Eed-QW-Qn1"/>
+                        <outlet property="containerViewHeight" destination="0iI-TT-Hss" id="dwy-J2-wbF"/>
+                        <outlet property="placeholderLabel" destination="9aR-tb-TRF" id="CvF-WX-NKI"/>
                         <outlet property="sendButton" destination="L0T-ct-Tmu" id="SWP-1d-cTj"/>
                         <outlet property="tableView" destination="m7u-c9-zBm" id="uZk-kX-emZ"/>
                         <outlet property="textView" destination="Pri-QE-9fi" id="BPA-SS-6fM"/>
+                        <outlet property="textViewHeight" destination="OHw-IU-zhO" id="aKM-Dc-KmT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s4V-mY-KnP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
