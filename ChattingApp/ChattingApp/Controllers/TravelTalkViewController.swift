@@ -21,6 +21,7 @@ final class TravelTalkViewController: UIViewController {
     
     private func configureUI() {
         setUpNaviBar()
+        setUpSearchBar()
         setUpData()
         setUpCollectionView()
     }
@@ -34,6 +35,11 @@ final class TravelTalkViewController: UIViewController {
         navigationController?.navigationBar.standardAppearance = appearance // 기본설정
         navigationController?.navigationBar.compactAppearance = appearance // 컴팩트바 ?
         navigationController?.navigationBar.scrollEdgeAppearance = appearance // 스크롤 시
+    }
+    
+    private func setUpSearchBar() {
+        searchBar.delegate = self
+        searchBar.placeholder = Text.searchPlace
     }
     
     private func setUpCollectionView() {
@@ -58,6 +64,20 @@ final class TravelTalkViewController: UIViewController {
     private func setUpData() {
         chatRoomList = ChatList.list
     }
+    
+    private func searchChatRooms(_ searchText: String) {
+        let trimText = searchText.lowercased().trimmingCharacters(in: .whitespaces)
+        
+        guard !trimText.isEmpty else {
+            chatRoomList = ChatList.list
+            collectionView.reloadData()
+            return
+        }
+        chatRoomList = ChatList.list.filter {
+            $0.chatroomName.lowercased().contains(trimText)
+        }
+        collectionView.reloadData()
+    }
 }
 
 extension TravelTalkViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -80,5 +100,16 @@ extension TravelTalkViewController: UICollectionViewDelegate, UICollectionViewDa
         vc.title = chatRoomList[indexPath.item].chatroomName
         navigationController?.pushViewController(vc, animated: true)
     }
+}
+
+extension TravelTalkViewController: UISearchBarDelegate {
     
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchChatRooms(searchBar.text ?? "")
+        view.endEditing(true)
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        searchChatRooms(searchText)
+    }
 }
