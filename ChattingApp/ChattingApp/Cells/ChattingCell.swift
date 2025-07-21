@@ -21,6 +21,8 @@ final class ChattingCell: UITableViewCell {
         }
     }
     
+    var dateString: String?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         configureUI()
@@ -57,5 +59,6 @@ final class ChattingCell: UITableViewCell {
         nameLabel.text = chat.user.name
         chatLabel.text = chat.message
         dateLabel.text = chat.date.formatChatDate()
+        dateString = chat.date.formatListDate()
     }
 }

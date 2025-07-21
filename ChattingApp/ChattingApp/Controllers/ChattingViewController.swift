@@ -25,19 +25,21 @@ final class ChattingViewController: UIViewController {
     @IBOutlet var placeholderLabel: UILabel!
     
     var roomId = 0
-    var chatList: [Chat] = []
+    var chatList: [Chat] = [] // 전 화면에서 받아온 데이터
+    var chatDisplayList: [ChatType] = [] // 타입 구분하여 사용할 데이터
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpTableView()
         setUpTextView()
         setUpButton()
+        makeDisplayList()
     }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         print(#function)
-        let lastIndex = IndexPath(row: chatList.count - 1, section: 0)
+        let lastIndex = IndexPath(row: chatDisplayList.count - 1, section: 0)
         print(lastIndex)
 //        tableView.scrollToRow(at: lastIndex, at: .bottom, animated: true)
     }
@@ -45,7 +47,7 @@ final class ChattingViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         print(#function)
-        let lastIndex = IndexPath(row: chatList.count - 1, section: 0)
+        let lastIndex = IndexPath(row: chatDisplayList.count - 1, section: 0)
         tableView.scrollToRow(at: lastIndex, at: .bottom, animated: true)
         print(lastIndex)
     }
@@ -53,7 +55,7 @@ final class ChattingViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         print(#function)
-        let lastIndex = IndexPath(row: chatList.count - 1, section: 0)
+        let lastIndex = IndexPath(row: chatDisplayList.count - 1, section: 0)
         print(lastIndex)
 //        tableView.scrollToRow(at: lastIndex, at: .bottom, animated: true)
     }
@@ -61,6 +63,7 @@ final class ChattingViewController: UIViewController {
     private func setUpTableView() {
         tableView.register(CellType.chatting.nib, forCellReuseIdentifier: CellType.chatting.id)
         tableView.register(CellType.userChatting.nib, forCellReuseIdentifier: CellType.userChatting.id)
+        tableView.register(CellType.date.nib, forCellReuseIdentifier: CellType.date.id)
         tableView.dataSource = self
         tableView.delegate = self
         tableView.rowHeight = UITableView.automaticDimension
@@ -105,38 +108,62 @@ final class ChattingViewController: UIViewController {
         let date = Date()
         let dateString = date.makeChatDateString()
         let chat = Chat(user: ChatList.me, date: dateString, message: text)
-        chatList.append(chat)
+//        chatDisplayList.append(.date(chat.date.formatListDate()))
+//        chatDisplayList.append(.message(chat))
     
         // 구조체에 데이터 추가해보기
         ChatList.list[roomId - 1].chatList.append(chat)
         
+        chatList.append(chat)
+        makeDisplayList()
+        
         tableView.reloadData()
         textView.text = ""
+    }
+    
+    func makeDisplayList() {
+        chatDisplayList = []
+
+        var lastDateString: String?
+
+        for chat in chatList {
+            let currentDateString = chat.date.formatListDate()
+
+            if lastDateString != currentDateString {
+                chatDisplayList.append(.date(currentDateString))
+                lastDateString = currentDateString
+            }
+
+            chatDisplayList.append(.message(chat))
+        }
     }
 }
 
 extension ChattingViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        chatList.count
+        return chatDisplayList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let data = chatDisplayList[indexPath.row]
         
-        if chatList[indexPath.row].user.name == ChatList.me.name {
-            let cell = tableView.dequeueReusableCell(withIdentifier: CellType.userChatting.id) as! UserChattingCell
-            
-            cell.chat = chatList[indexPath.row]
-            
+        switch data {
+        case .date(let dateString):
+            let cell = tableView.dequeueReusableCell(withIdentifier: CellType.date.id, for: indexPath) as! DateCell
+            cell.dateLabel.text = dateString
             return cell
             
-        } else {
-            
-            let cell = tableView.dequeueReusableCell(withIdentifier: CellType.chatting.id) as! ChattingCell
-            
-            cell.chat = chatList[indexPath.row]
-            
-            return cell
+        case .message(let chat):
+            if chat.user.name == ChatList.me.name {
+                let cell = tableView.dequeueReusableCell(withIdentifier: CellType.userChatting.id, for: indexPath) as! UserChattingCell
+                cell.chat = chat
+                return cell
+            } else {
+                let cell = tableView.dequeueReusableCell(withIdentifier: CellType.chatting.id, for: indexPath) as! ChattingCell
+                cell.chat = chat
+                return cell
+            }
         }
     }
     

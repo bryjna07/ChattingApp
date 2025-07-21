@@ -11,6 +11,7 @@ enum CellType {
     case travelTalk
     case chatting
     case userChatting
+    case date
     
     var id: String {
         switch self {
@@ -20,6 +21,8 @@ enum CellType {
             return "ChattingCell"
         case .userChatting:
             return "UserChattingCell"
+        case .date:
+            return "DateCell"
         }
     }
     
@@ -31,6 +34,13 @@ enum CellType {
             return UINib(nibName: self.id, bundle: nil)
         case .userChatting:
             return UINib(nibName: self.id, bundle: nil)
+        case .date:
+            return UINib(nibName: self.id, bundle: nil)
         }
     }
+}
+
+enum ChatType {
+    case date(String)       // 날짜 셀
+    case message(Chat)      // 채팅 셀
 }

@@ -12,8 +12,7 @@ extension String {
         let forMattter = DateFormatter()
         forMattter.dateFormat = "yyyy-MM-dd HH:mm"
         
-        if let date = forMattter.date(from: self
-        ) {
+        if let date = forMattter.date(from: self) {
             forMattter.dateFormat = "yy.MM.dd"
             return forMattter.string(from: date)
         } else { return "알 수 없음" }
@@ -23,8 +22,7 @@ extension String {
         let forMattter = DateFormatter()
         forMattter.dateFormat = "yyyy-MM-dd HH:mm"
         
-        if let date = forMattter.date(from: self
-        ) {
+        if let date = forMattter.date(from: self) {
             forMattter.dateFormat = "h:mm a"
             forMattter.locale = Locale(identifier: "ko_KR")
             return forMattter.string(from: date)
