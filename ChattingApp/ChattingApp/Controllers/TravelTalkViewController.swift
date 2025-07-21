@@ -14,6 +14,12 @@ final class TravelTalkViewController: UIViewController {
     
     private var chatRoomList: [ChatRoom] = []
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setUpData()
+        collectionView.reloadData()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
@@ -95,7 +101,7 @@ extension TravelTalkViewController: UICollectionViewDelegate, UICollectionViewDa
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = self.storyboard?.instantiateViewController(identifier: Storyboard.chattingVC) as! ChattingViewController
-        
+        vc.roomId = chatRoomList[indexPath.item].chatroomId
         vc.chatList = chatRoomList[indexPath.item].chatList
         vc.title = chatRoomList[indexPath.item].chatroomName
         navigationController?.pushViewController(vc, animated: true)

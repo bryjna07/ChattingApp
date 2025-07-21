@@ -5,6 +5,11 @@
 //  Created by YoungJin on 7/18/25.
 //
 
+/*
+ 날짜 구분선 추가
+ 1시간 이내 대화는 프로필 사진 안보이게
+ */
+
 import UIKit
 //업다운게임.
 //채팅주말과제 + 옵션
@@ -19,6 +24,7 @@ final class ChattingViewController: UIViewController {
     @IBOutlet var containerViewHeight: NSLayoutConstraint!
     @IBOutlet var placeholderLabel: UILabel!
     
+    var roomId = 0
     var chatList: [Chat] = []
     
     override func viewDidLoad() {
@@ -100,6 +106,10 @@ final class ChattingViewController: UIViewController {
         let dateString = date.makeChatDateString()
         let chat = Chat(user: ChatList.me, date: dateString, message: text)
         chatList.append(chat)
+    
+        // 구조체에 데이터 추가해보기
+        ChatList.list[roomId - 1].chatList.append(chat)
+        
         tableView.reloadData()
         textView.text = ""
     }
