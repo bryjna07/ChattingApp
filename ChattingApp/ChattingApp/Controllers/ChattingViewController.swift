@@ -25,6 +25,7 @@ final class ChattingViewController: UIViewController {
     @IBOutlet var placeholderLabel: UILabel!
     
     var roomId = 0
+    /// roomId 만 전달 받아서 해보기
     var chatList: [Chat] = [] // 전 화면에서 받아온 데이터
     var chatDisplayList: [ChatType] = [] // 타입 구분하여 사용할 데이터
     
@@ -41,7 +42,7 @@ final class ChattingViewController: UIViewController {
         print(#function)
         let lastIndex = IndexPath(row: chatDisplayList.count - 1, section: 0)
         print(lastIndex)
-//        tableView.scrollToRow(at: lastIndex, at: .bottom, animated: true)
+        //        tableView.scrollToRow(at: lastIndex, at: .bottom, animated: true)
     }
     
     override func viewDidLayoutSubviews() {
@@ -57,7 +58,7 @@ final class ChattingViewController: UIViewController {
         print(#function)
         let lastIndex = IndexPath(row: chatDisplayList.count - 1, section: 0)
         print(lastIndex)
-//        tableView.scrollToRow(at: lastIndex, at: .bottom, animated: true)
+        //        tableView.scrollToRow(at: lastIndex, at: .bottom, animated: true)
     }
     
     private func setUpTableView() {
@@ -70,14 +71,14 @@ final class ChattingViewController: UIViewController {
         tableView.separatorStyle = .none
         //viewDidAppear 보다 더 적절한 위치는 어딜지 고민, reload 시에는 어떻게 될까
         // Pagination
-//        DispatchQueue.main.async { [weak self] in
-//            guad let self else { return }
-//            let lastIndex = IndexPath(row: self.chatList.count - 1, section: 0)
-//            self.tableView.scrollToRow(at: lastIndex, at: .bottom, animated: true)
-//        }
+        //        DispatchQueue.main.async { [weak self] in
+        //            guad let self else { return }
+        //            let lastIndex = IndexPath(row: self.chatList.count - 1, section: 0)
+        //            self.tableView.scrollToRow(at: lastIndex, at: .bottom, animated: true)
+        //        }
         //viewDidLoad 에서 dispatchqu.main.async { }
-//        let lastIndex = IndexPath(row: chatList.count - 1, section: 0)
-//        tableView.scrollToRow(at: lastIndex, at: .bottom, animated: true) // 위치 고민
+        //        let lastIndex = IndexPath(row: chatList.count - 1, section: 0)
+        //        tableView.scrollToRow(at: lastIndex, at: .bottom, animated: true) // 위치 고민
     }
     
     private func setUpTextView() {
@@ -99,7 +100,7 @@ final class ChattingViewController: UIViewController {
         sendButton.setTitle("", for: .normal)
         sendButton.setImage(UIImage(systemName: Text.sendImageName), for: .normal)
         sendButton.tintColor = .systemGray2
- 
+        
     }
     
     @IBAction func sendButtonTapped(_ sender: UIButton) {
@@ -108,9 +109,9 @@ final class ChattingViewController: UIViewController {
         let date = Date()
         let dateString = date.makeChatDateString()
         let chat = Chat(user: ChatList.me, date: dateString, message: text)
-//        chatDisplayList.append(.date(chat.date.formatListDate()))
-//        chatDisplayList.append(.message(chat))
-    
+        //        chatDisplayList.append(.date(chat.date.formatListDate()))
+        //        chatDisplayList.append(.message(chat))
+        
         // 구조체에 데이터 추가해보기
         ChatList.list[roomId - 1].chatList.append(chat)
         
@@ -123,22 +124,30 @@ final class ChattingViewController: UIViewController {
     
     func makeDisplayList() {
         chatDisplayList = []
-
-        var lastDateString: String?
-
+        
+        var lastDate: Date? = nil
+        
+        /// Date 타입으로 비교하기 기준시간 생각, 1시간 이어붙이기
         for chat in chatList {
-            let currentDateString = chat.date.formatListDate()
-
-            if lastDateString != currentDateString {
-                chatDisplayList.append(.date(currentDateString))
-                lastDateString = currentDateString
+            guard let currentDate = chat.date.toDate() else {
+                chatDisplayList.append(.message(chat))
+                continue
             }
-
+            
+            if let last = lastDate {
+                if !Calendar.current.isDate(last, inSameDayAs: currentDate) {
+                    chatDisplayList.append(.date(currentDate.makeChatDateString()))
+                    lastDate = currentDate
+                }
+            } else {
+                chatDisplayList.append(.date(currentDate.makeChatDateString()))
+                lastDate = currentDate
+            }
+            
             chatDisplayList.append(.message(chat))
         }
     }
 }
-
 extension ChattingViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -181,10 +190,10 @@ extension ChattingViewController: UITextViewDelegate {
         let minHeight: CGFloat = 40
         
         let newHeight = min(max(estimatedSize.height, minHeight), maxHeight)
-
+        
         textViewHeight.constant = newHeight
         containerViewHeight.constant = newHeight
-
+        
         view.layoutIfNeeded()
     }
 }

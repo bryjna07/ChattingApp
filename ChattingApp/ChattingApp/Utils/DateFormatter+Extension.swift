@@ -28,12 +28,20 @@ extension String {
             return forMattter.string(from: date)
         } else { return "알 수 없음" }
     }
+    
+    /// Date타입으로 변환
+    func toDate() -> Date? {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm"
+        return formatter.date(from: self)
+    }
+    
 }
 
 extension Date {
     func makeChatDateString() -> String {
-          let formatter = DateFormatter()
-          formatter.dateFormat = "yyyy-MM-dd HH:mm"
-          return formatter.string(from: self)
-      }
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm"
+        return formatter.string(from: self)
+    }
 }
